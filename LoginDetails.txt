@@ -1,0 +1,8 @@
+SuperUser:
+	Username: tamilalakan
+	Password: password2020
+	Email: tamilalakan@gmail.com
+OtherUser:
+	Username: vignesh 
+	Password: tamil12345
+	Email: vignesh@gamil.com

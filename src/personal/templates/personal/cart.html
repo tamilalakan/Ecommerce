@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<title>Cart</title>
+<style type="text/css">
+	html, body {
+		margin-left: 10px;
+		overflow-x: hidden;
+	}
+	.button {
+  color: black;
+  border: none;
+  padding: 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 70%;
+}
+.button:hover {
+background-color: #ddd;
+}
+img:hover {
+
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0.25, 0.50));
+
+}
+</style>
+<!--Section: Block Content-->
+<section>
+<form method="post">{% csrf_token %}
+  <!--Grid row-->
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-lg-8">
+    	
+      <!-- Card -->
+      <div class="mb-3">
+        <div class="pt-3 wish-list">
+
+          <h5 class="mb-4"style="text-align: center;">Cart (<span>{{ acc | length }}</span> items)</h5>
+          <br><br>
+          {% for i in acc %}
+          <div class="row mb-3">
+            <div class="col-md-5 col-lg-3 col-xl-3">
+              <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                <a href="{% url 'product_detail' i.0.id  %}"><img class="img-fluid w-100"src="{{i.0.image.url}}" alt="Sample"></a>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-9 col-xl-9">
+              <div>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h5><a style="color: black; text-decoration: none;" href="{% url 'product_detail' i.0.id  %}">{{i.0.name}}</a></h5>
+                    <p class="mb-3 text-muted small" style="width: 60%;">{{i.0.about}}</p>
+                  </div>
+                  <div>
+                    <div class="def-number-input number-input safari_only mb-10 w-100">
+                    <pre>  <input min='0' style="width: 60%;" name="quantity" value="{{i.1}}" type="number"><br>
+<button class="btn btn-primary btn-sm" name="{{i.0.id}}" value="decreament">-</button>   <button class="btn btn-primary btn-sm" name="{{i.0.id}}" value="increament">+</button></pre>
+                    </div/>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <a href="{% url 'remove' i.0.id  %}" type="button" class="btn btn-danger small mr-1"><i class="fas fa-trash-alt mr-1"></i>Remove</a>
+                  </div>
+                  <p class="mb-10" style="width: 30%;"><span><strong id="summary" style="color: green;">₹ {{i.0.rate}}</strong></span></p class="mb-0">
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          {% endfor %}
+          
+          
+
+        </div>
+      </div>
+      <!-- Card -->
+      
+      <!-- Card -->
+
+      <!-- Card -->
+      <div class="mb-3" style="text-align: center;">
+        <div class="pt-3">
+
+          <h5 class="mb-4">We accept</h5>
+
+          <img class="mr-2" width="45px"
+            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+            alt="Visa">
+          <img class="mr-2" width="45px"
+            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+            alt="American Express">
+          <img class="mr-2" width="45px"
+            src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+            alt="Mastercard">
+          <img class="mr-2" width="45px"
+            src="https://mdbootstrap.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
+            alt="PayPal acceptance mark">
+        </div>
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-3">
+
+      <!-- Card -->
+      <div class="mb-3">
+        <div class="pt-3">
+        	<br><br><br><br>
+
+          <h5 class="mb-3">The total amount of</h5>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              <b>Shipping amount:</b>
+              <span>₹ 50.98</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              <b>Shipping:</b>
+              <span>Tamil Nadu</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+              <div>
+                <strong>The total amount of</strong>
+                <strong>
+                  <p class="mb-0">(including GST)</p>
+                </strong>
+              </div>
+              <span><strong>₹ {{total}}</strong></span>
+            </li>
+          </ul>
+          {% if account.firstname %}
+          
+            <p style="color: green;">Your Address details are already saved.</p>
+
+          {% else %}
+
+          <form method="post" > {% csrf_token %}
+            <h5 class="card-title" style="margin-left: 100px; ">Address</h5>
+      <pre><input type="text" name="firstname" style="width: 60%;" class="form-control" placeholder="First Name" > <input type="text" style="width: 60%;" name="lastname" placeholder="Last Name" class="form-control"> <br><br>
+    <textarea type="text" rows="5" cols="10" name="address" style="width: 80%;" placeholder="Address" class="form-control"></textarea><br><br> <input type="text" style="width: 60%;" name="city" placeholder="City" class="form-control"><br><br>
+    <input type="text" name="zipcode" placeholder="Zip" style="width: 60%;" class="form-control"> <br><br><input type="text" name="state" placeholder="State" style="width: 60%;" class="form-control"><br><br></pre>
+    
+    </form>
+    {% endif %}
+    <p style="color: red;">{{error}}</p>
+          <pre><button type="submit" name="type" value="submit" class="btn btn-primary">Buy</button></pre>
+        </div>
+      </div>
+      <!-- Card -->
+
+      <!-- Card -->
+      <div class="mb-3">
+        <div class="pt-3">
+
+          <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">
+            Add a discount code (optional)
+            <span><i class="fas fa-chevron-down pt-1"></i></span>
+          </a>
+
+          <div class="collapse" id="collapseExample">
+            <div class="mt-3">
+              <div class="md-form md-outline mb-0">
+                <input type="text" id="discount-code" class="form-control font-weight-light"
+                  placeholder="Enter discount code">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+  <!-- Grid row -->
+  </form>
+</section>
+<!--Section: Block Content-->
+
+{% endblock %}

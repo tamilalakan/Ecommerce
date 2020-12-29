@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
+<title>Product</title>
+<style type="text/css">
+/* Rectangle 3 */
+
+body{
+	overflow-x: hidden;
+	height: 2000px;
+}
+.img{
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	
+	}
+.img:hover{
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0.25, 0.50));
+}
+/* Products */
+
+
+.head{
+	position: absolute;
+	width: 107px;
+	height: 30px;
+	left: 579px;
+	top: 113px;
+
+	font-family: Audiowide;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 40px;
+	line-height: 47px;
+	letter-spacing: 0.1em;
+
+	color: #000000;
+	}
+
+/* Alexa */
+
+
+.alexa{
+	position: absolute;
+	width: 470px;
+	height: 22px;
+	
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 15px;
+	letter-spacing: 0.1em;
+
+	color: #000000;
+	}
+
+
+/* ₹ 20000.00 */
+
+
+.amount{
+	position: absolute;
+	width: 119px;
+	height: 23px;
+
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 15px;
+	line-height: 18px;
+	letter-spacing: 0.1em;
+
+	color: #FB0606;
+	}
+
+
+/* M.R.P.: ₹35000.50 (10% off) */
+
+
+.mrp{
+	position: absolute;
+	width: 184px;
+	height: 18px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 13px;
+	line-height: 15px;
+	letter-spacing: 0.01em;
+
+	color: #000000;
+	}
+
+
+.line_2{
+	position: absolute;
+	width: 207px;
+	height: 1px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	transform: rotate(90deg);
+}
+
+/*
+* {
+  box-sizing: border-box;
+}
+*/
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  margin-top: 60px;
+  margin-left: 13px;
+  width: 18%;
+  padding: 0 0px;
+}
+
+/* Remove extra left and right margins, due to padding */
+/*.row {margin: 0 5px;}*/
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  padding: 10px;
+  text-align: left;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+/*.card:hover{
+	filter: drop-shadow(0px 2px 2px rgba(0, 0, 0.25, 0.50));
+}*/
+
+
+</style>
+
+<p class="head"><u>Product's</u></p>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div class="row">
+
+	{% for i in prod %}
+	<div class="column">
+		<div class="card w3-white w3-hover-shadow w3-center">
+			<a href="{% url 'product_detail' i.id %}"><img src="{{i.image.url}}" width="200px" height="200px"></a>
+		<pre style="color: red;">₹{{i.rate}}</pre>
+		<pre>M.R.P: <del style="color: red;">₹{{mrp.}}</del> 
+(20% off)</pre>
+		<a href="{% url 'product_detail' i.id %}" style="color: green; text-decoration: none;">{{i.name}}</a>
+			
+		</div>
+		
+	</div>
+{% endfor %}
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<title>Success</title>
+<center>
+<pre><h1 style="text-align: center;font-size: 5rem;"><b>THANK YOU!</b></h1><img style="text-align: center;" src="{{pic.0.picture.url}}" alt="Smiley face" width="200" height="200">
+<p style="color: green;">Your coupon is on it's way to your email..</p><p>Again thanks for choosing our website</p><a href="{% url 'home' %}"><button class="btn btn-success">Go Home</button></a>
+</pre>
+</center>
+{% endblock %}

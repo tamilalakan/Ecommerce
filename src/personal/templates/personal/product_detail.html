@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Athiti' rel='stylesheet'>
+<title>Product Detail</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<!-- jQuery and JS bundle w/ Popper.js -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.8.10/themes/smoothness/jquery-ui.css" type="text/css">
+<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<style type="text/css">
+	/* Rectangle 1 */
+body{
+	height: 900px;
+}
+.image
+{
+	position: absolute;
+	width: 400px;
+	height: 400px;
+	left: 30px;
+	top: 95px;
+
+	background: #C4C4C4;
+
+}
+.image:hover
+{
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0.25, 0.50));
+}
+/* Alexa */
+
+.name
+{
+	position: absolute;
+	width: 398px;
+	height: 40px;
+	left: 496px;
+	top: 95px;
+
+	font-family: Athiti;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 25px;
+	line-height: 33px;
+
+	color: #000000;
+}
+/* ₹20000.0 */
+
+.amount
+{
+	position: absolute;
+	width: 344px;
+	height: 36px;
+	left: 496px;
+	top: 143px;
+
+	font-family: Athiti;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 25px;
+	line-height: 40px;
+
+	color: #988F8F;
+}
+
+/* In Stock. */
+
+
+.stock
+{
+	position: absolute;
+	width: 111px;
+	height: 38px;
+	left: 496px;
+	top: 172px;
+
+	font-family: Athiti;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 25px;
+	line-height: 40px;
+
+	color: green;
+}
+
+/* Rectangle 2 */
+
+.re
+{
+	position: absolute;
+	width: 802px;
+	/*height: 858px;*/
+	left: 496px;
+	top: 258px;
+
+
+}
+.cbutton 
+{
+	border: none;
+	outline: 0;
+	position: absolute;
+	padding: 5px;
+	color: white;
+	background-color: #F5CB33 ;
+	font-family: Athiti;
+	font-style: normal;
+	font-weight: 500;
+	text-align: center;
+	cursor: pointer;
+
+	font-size: 15px;
+	/*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+}
+.c
+{	
+	
+	background-color:#FF8A00;
+}
+
+.cbutton:hover {
+	background-color: green;
+	color: white;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  /*opacity: 0.7;*/
+}
+.cbutton:focus{
+	background-color: green;
+}
+
+</style>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+	<img class="image" class="img" src="{{image.url}}" width="200px" height="200px">
+	<p class="name">{{name}}</p>
+	<p class="amount">₹{{rate}}-₹{{mrp.0}}</p>
+	<p class="stock">In Stock.</p>
+	
+	<a href="{% url 'product_detail' id %}"><button class="cbutton"style="left: 496px;top: 220px;width: 110px;height: 30px;"><b>
+		<div >ADD TO CART</div>
+	</b></button></a>
+
+	<!-- <button class="cbutton c" ng-click="cou = cou + 1" ng-init="cou=0" style="left: 627px;top: 220px; width: 110px;height: 30px;"><b>
+				<div >BUY NOW</div> -->
+	</b></button>
+	<div class="container re">
+		<h2>{{name}}</h2>
+		<p>{{short}}</p>
+
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+		    <a class="nav-link active" style="text-decoration: none;" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
+		    <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Warranty</a>
+		    <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Reviews</a>
+		    <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">About</a>
+
+		  </div>
+		</nav>
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><br>
+					<h3>Product Description:</h3>
+					{% for i in description %}
+						<ul>
+							<li>{{i}}</li>
+						</ul>
+					{% endfor %}
+
+				</div>
+				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"><br>
+					<h3>Warrenty:</h3>
+
+					{% for i in warrenty %}
+						<ul>
+							<li>{{i}}</li>
+						</ul>
+					{% endfor %}
+
+				</div>
+				<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"><br>
+					<h3 style="text-align: center;">No Review</h3>
+				</div>
+				<div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab"><br>
+					<h3>About:</h3>
+					{% for i in about %}
+						<ul>
+							<li>{{i}}</li>
+						</ul>
+					{% endfor %}
+				</div>
+			</div>
+
+	</div>
+
+
+
+		
+</div>
+
+
+
+<script>
+var app = angular.module('myApp', []);
+
+app.config(function config($interpolateProvider){
+	$interpolateProvider.startSymbol('[[').endSymbol(']]');
+});
+
+
+app.controller('myCtrl',function($scope) {
+	$scope.daTa = "ADD TO CART";
+   $scope.add = function(value){
+   		$scope.daTa = "Success";
+   	// $scope.data.push(name1);\
+   		console.log($scope.daTa);
+   		
+   };
+   return $scope.daTa;
+});
+</script>
+
+
+
+{% endblock content %}

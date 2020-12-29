@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<title>Upload</title>
+<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
+<style type="text/css">
+
+
+	.form-signin {
+	  width: 100%;
+	  max-width: 330px;
+	  padding: 15px;
+	  margin: auto;
+	}
+	.form-signin .form-control {
+	  position: relative;
+	  box-sizing: border-box;
+	  height: auto;
+	  padding: 10px;
+	  font-size: 16px;
+	}
+	.form-signin .form-control:focus {
+	  z-index: 2;
+	}
+	.form-signin input[type="email"] {
+	  margin-bottom: 10px;
+	  border-bottom-right-radius: 0;
+	  border-bottom-left-radius: 0;
+	  border-radius: 10px;
+	}
+	.form-signin input[type="text"] {
+	  margin-bottom: 10px;
+	  border-bottom-right-radius: 0;
+	  border-bottom-left-radius: 0;
+	  border-radius: 10px;
+	}
+	.form-signin input[type="password"] {
+	  margin-bottom: 3px;
+	  border-top-left-radius: 0;
+	  border-top-right-radius: 0;
+	  border-radius: 10px;
+	}	
+	.h3{
+		text-align: center;
+	}
+	/* Polygon 1 */
+
+.polygon{
+position: absolute;
+width: 58px;
+height: 40px;
+left: 401px;
+top: 357px;
+
+background: #FF5C5C;
+filter: blur(4px);}
+.elllip{
+	position: absolute;
+width: 79px;
+height: 79px;
+left: 557px;
+top: 286px;
+
+background: #DBAFDC;
+filter: blur(4px);
+border-radius: 50%;
+}
+
+</style>
+<p class="polygon"></p>
+<p class="elllip"></p>
+
+<form class="form-signin" method='post'  enctype="multipart/form-data">{% csrf_token %}
+
+	<h1 class="h3 mb-3 font-weight-normal" style="font-family: monospace;"><u><b>Upload Product</b></u></h1><br>
+	
+
+		<input type="text" name="name" class="form-control" placeholder="Product Name" required autofocus><br>
+		
+			<textarea name="short_des" rows="8"  class="form-control" placeholder="Short Description"></textarea>
+			<br>
+			
+			<textarea name="description" rows="8" class="form-control" placeholder="Description"></textarea><br>
+			
+			<input type="text" name="warrenty" class="form-control" placeholder="Warrenty" required><br>
+	
+			<input type="text" name="about" class="form-control" placeholder="About" required><br>
+
+			<input type="text" name="rate" class="form-control" placeholder="Rate" required><br>
+
+			<pre style="color: green;font-size: 1.5rem;">	Image</pre>
+			<input type="file" name="image" class="form-control" placeholder="Image" required><br>
+
+			<pre style="color: green;font-size: 1.5rem;">	Image</pre>
+			<input type="file" name="main_image" class="form-control" placeholder="Cover Image" required><br>
+		
+
+			<button class="btn btn-primary form-control" type="submit">Upload</button>
+		
+</form>
+
+{% endblock content %}
